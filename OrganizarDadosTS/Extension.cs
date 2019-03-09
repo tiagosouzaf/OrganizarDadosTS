@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -74,6 +75,23 @@ namespace OrganizarDadosTS
                 return true;
 
             return false;
+        }
+
+        public static (bool arquivoExiste, FileInfo arquivo)? ArquivoExiste(this string arquivo)
+        {
+            if (File.Exists(arquivo))
+                return (true, new FileInfo(arquivo));
+
+            return null;
+        }
+
+        public static DateTime? DataTratada(this string data)
+        {
+
+            if (DateTime.TryParse(data.ToString(), out DateTime result))
+                return result;
+
+            return null;
         }
     }
 }
